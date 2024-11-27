@@ -1,13 +1,11 @@
 namespace Reflex_Rehab {
     public partial class MainWindow : Form {
-        private Form activeForm = new Form();
+        private Form activeForm = new();
         public MainWindow() {
             InitializeComponent();
         }
-        private void OpenChildForm(Form childForm, object btnSender) {
-            if (activeForm != null) {
-                activeForm.Close();
-            }
+        private void OpenChildForm(Form childForm) {
+            activeForm?.Close();
             activeForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -19,7 +17,7 @@ namespace Reflex_Rehab {
         }
 
         private void BtnWelcomeScreen_Click(object sender, EventArgs e) {
-            OpenChildForm(new GameAndMenuForms.MainMenu(), sender);
+            OpenChildForm(new GameAndMenuForms.MainMenu());
         }
     }
 }

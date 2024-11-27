@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace Reflex_Rehab.GameAndMenuForms {
     internal abstract partial class AbstractMainLevel : Form {
+        protected abstract Button CreateCloseButton();
+        protected abstract Label CreateTimerLabel();
+        protected abstract Label CreateScoreLabel();
+        protected abstract Label CreateQuestionLabel(string questionText);
         protected abstract void InitializeGame();
         protected abstract void GameTimer_Tick(object sender, EventArgs e);
         protected abstract void GenerateQuestion();

@@ -11,11 +11,11 @@ using System.Windows.Forms;
 namespace Reflex_Rehab.GameAndMenuForms {
     public partial class MainMenu : Form {
         private Form? activeForm = null;
-        private int difficultySelect;
+        private short difficultySelect;
         public MainMenu() {
             InitializeComponent();
         }
-        private void OpenChildForm(Form childForm, object btnSender) {
+        private void OpenChildForm(Form childForm) {
             activeForm?.Close();
             activeForm = childForm;
             childForm.TopLevel = false;
@@ -43,14 +43,16 @@ namespace Reflex_Rehab.GameAndMenuForms {
             btnSelectDifficulty.BackColor = Color.FromArgb(180, 33, 33, 33);
         }
         private void BtnEasy_Click(object sender, EventArgs e) {
+            GC.Collect();
             LevelEasy easy = new();
             easy.WinConditionChanged += OnWinConditionChanged;
-            OpenChildForm(easy, sender);
+            OpenChildForm(easy);
         }
 
         private void BtnMedium_Click(object sender, EventArgs e) {
+            GC.Collect();
             if (difficultySelect >= 0) {
-                OpenChildForm(new LevelMedium(), sender);
+                OpenChildForm(new LevelMedium());
             }
             else {
                 MessageBox.Show("Musisz pokonać pierwszy etap!");
@@ -58,8 +60,9 @@ namespace Reflex_Rehab.GameAndMenuForms {
         }
 
         private void BtnHard_Click(object sender, EventArgs e) {
-            if (difficultySelect >= 2) {
-                OpenChildForm(new LevelHard(), sender);
+            GC.Collect();
+            if (difficultySelect >= 0) {
+                OpenChildForm(new LevelHard());
             }
             else {
                 MessageBox.Show("Musisz pokonać drugi etap!");
