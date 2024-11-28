@@ -51,7 +51,7 @@ namespace Reflex_Rehab.GameAndMenuForms {
 
         private void BtnMedium_Click(object sender, EventArgs e) {
             GC.Collect();
-            if (difficultySelect >= 0) {
+            if (difficultySelect >= 1) {
                 OpenChildForm(new LevelMedium());
             }
             else {
