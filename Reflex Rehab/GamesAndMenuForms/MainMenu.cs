@@ -12,8 +12,10 @@ namespace Reflex_Rehab.GameAndMenuForms {
     public partial class MainMenu : Form {
         private Form? activeForm = null;
         private short difficultySelect;
-        public MainMenu() {
+        private readonly MainWindow mainWindow;
+        public MainMenu(MainWindow mainWindow) {
             InitializeComponent();
+            this.mainWindow = mainWindow;
         }
         private void OpenChildForm(Form childForm) {
             activeForm?.Close();
@@ -36,6 +38,10 @@ namespace Reflex_Rehab.GameAndMenuForms {
                 MessageBox.Show("Ukończyłeś poziom średni!", "Gratulacje");
                 difficultySelect = 2;
             }
+            else {
+                MessageBox.Show("Ukończyłeś poziom trudny!", "Gratulacje");
+                difficultySelect = 3;
+        }
         }
 
         private void BtnSelectDifficulty_Click(object sender, EventArgs e) {
@@ -44,7 +50,7 @@ namespace Reflex_Rehab.GameAndMenuForms {
         }
         private void BtnEasy_Click(object sender, EventArgs e) {
             GC.Collect();
-            LevelEasy easy = new();
+            LevelEasy easy = new(mainWindow);
             easy.WinConditionChanged += OnWinConditionChanged;
             OpenChildForm(easy);
         }

@@ -1,8 +1,17 @@
+using Reflex_Rehab.GameAndMenuForms;
+
 namespace Reflex_Rehab {
     public partial class MainWindow : Form {
         private Form activeForm = new();
+        public event Action<Keys>? KeyPressed;
         public MainWindow() {
             InitializeComponent();
+            KeyPreview = true;
+            KeyDown += MainWindow_KeyDown;
+        }
+
+        private void MainWindow_KeyDown(object? sender, KeyEventArgs e) {
+            KeyPressed?.Invoke(e.KeyCode);
         }
         private void OpenChildForm(Form childForm) {
             activeForm?.Close();
@@ -17,7 +26,8 @@ namespace Reflex_Rehab {
         }
 
         private void BtnWelcomeScreen_Click(object sender, EventArgs e) {
-            OpenChildForm(new GameAndMenuForms.MainMenu());
+            MainMenu mainMenu = new(this);
+            OpenChildForm(mainMenu);
         }
     }
 }
