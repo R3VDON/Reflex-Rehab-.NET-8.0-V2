@@ -41,7 +41,7 @@ namespace Reflex_Rehab.GameAndMenuForms {
             else {
                 MessageBox.Show("Ukończyłeś poziom trudny!", "Gratulacje");
                 difficultySelect = 3;
-        }
+            }
         }
 
         private void BtnSelectDifficulty_Click(object sender, EventArgs e) {
@@ -58,7 +58,9 @@ namespace Reflex_Rehab.GameAndMenuForms {
         private void BtnMedium_Click(object sender, EventArgs e) {
             GC.Collect();
             if (difficultySelect >= 1) {
-                OpenChildForm(new LevelMedium());
+                LevelMedium medium = new(mainWindow);
+                medium.WinConditionChanged += OnWinConditionChanged;
+                OpenChildForm(medium);
             }
             else {
                 MessageBox.Show("Musisz pokonać pierwszy etap!");
@@ -68,7 +70,9 @@ namespace Reflex_Rehab.GameAndMenuForms {
         private void BtnHard_Click(object sender, EventArgs e) {
             GC.Collect();
             if (difficultySelect >= 2) {
-                OpenChildForm(new LevelHard());
+                LevelHard hard = new(mainWindow);
+                hard.WinConditionChanged += OnWinConditionChanged;
+                OpenChildForm(hard);
             }
             else {
                 MessageBox.Show("Musisz pokonać drugi etap!");
