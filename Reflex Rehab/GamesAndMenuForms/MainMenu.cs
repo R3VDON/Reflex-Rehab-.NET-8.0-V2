@@ -7,16 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-namespace Reflex_Rehab.GameAndMenuForms {
+/// <summary>
+///       Namespace Name - Reflex_Rehab.GamesAndMenuForms.
+/// </summary>
+namespace Reflex_Rehab.GamesAndMenuForms {
+    /// <summary>Menu główne</summary>
+    /// <summary>Formularz Windows Forms stanowiący menu główne gry Reflex Rehab.</summary>
+    /// \author Konrad Fornal 193083, EiT, Telekomunikacja 1A
     public partial class MainMenu : Form {
+        /// <summary>
+        /// Obiekt klasy Form wykorzystywany do umieszczania formularza w formularzu
+        /// </summary>
         private Form? activeForm = null;
+        /// <summary>
+        /// Zmienna przechowująca informacje o odblokowanych poziomach trudności.
+        /// </summary>
         private short difficultySelect;
+        /// <summary>
+        /// Obiekt klasy <see cref="MainWindow"/> wykorzystywany w celu obsługi klawiatury.
+        /// </summary>
         private readonly MainWindow mainWindow;
+
+        /// <summary>Konstruktor klasy <see cref="MainMenu"/></summary>
+        /// <summary>Konstruktor klasy <see cref="MainMenu"/> przyjmujący parametr w postaci obiektu formularza <see cref="MainWindow"/></summary>
+        /// <param name="mainWindow">Typem parametru mainWindow jest: Reflex_Rehab.MainWindow.</param>
+        /// <returns>void.</returns>
         public MainMenu(MainWindow mainWindow) {
             InitializeComponent();
             this.mainWindow = mainWindow;
         }
+
+        /// <summary>Metoda otwierająca nowy formularz.</summary>
+        /// <summary>Metoda otwierająca nowy formularz w panelu <see cref="panelMain"/> wraz z jego podstawowymi ustawieniami.</summary>
+        /// <param name="childForm">Typem parametru childForm jest: System.Windows.Forms.Form.</param>
+        /// <returns>void.</returns>
         private void OpenChildForm(Form childForm) {
             activeForm?.Close();
             activeForm = childForm;
@@ -29,25 +53,53 @@ namespace Reflex_Rehab.GameAndMenuForms {
             childForm.Show();
         }
 
+
+        /// <summary>Metoda sprawdzająca, które poziomy przeszedł gracz.</summary>
+        /// <summary>
+        /// Metoda ta sprawdza, który poziom przeszedł gracz i wyświetla stosowny komunikat. 
+        /// W przypadku pierwszego przejścia ustawiana jest flaga odblokowania kolejnego poziomu.
+        /// </summary>
+        /// <param name="winCondition">Typem parametru winCondition jest: int.</param>
+        /// <returns>void.</returns>
         private void OnWinConditionChanged(int winCondition) {
             if (winCondition == 1) {
                 MessageBox.Show("Ukończyłeś poziom łatwy!", "Gratulacje");
-                difficultySelect = 1;
+                if (difficultySelect == 0)
+                    difficultySelect = 1;
             }
             else if (winCondition == 2) {
                 MessageBox.Show("Ukończyłeś poziom średni!", "Gratulacje");
-                difficultySelect = 2;
+                if (difficultySelect <= 1)
+                    difficultySelect = 2;
             }
             else {
                 MessageBox.Show("Ukończyłeś poziom trudny!", "Gratulacje");
-                difficultySelect = 3;
+                if (difficultySelect <= 2)
+                    difficultySelect = 3;
             }
         }
 
+        /// <summary>Metoda obsługująca naciśnięcie przycisku wyboru poziomu trudności.</summary>
+        /// <summary>
+        /// Metoda obsługująca naciśnięcie przycisku wyboru poziomu trudności. 
+        /// Akcją wynikową jest wyświetlenie panelu z przyciskami poziomów trudności.
+        /// </summary>
+        /// <param name="sender"> Typem danych parametru sender jest: object.</param>
+        /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
+        /// <returns>void.</returns>
         private void BtnSelectDifficulty_Click(object sender, EventArgs e) {
             panelMenuDifficultySelection.Show();
             btnSelectDifficulty.BackColor = Color.FromArgb(180, 33, 33, 33);
         }
+
+        /// <summary>Metoda obsługująca naciśnięcie przycisku uruchamiającego poziom łatwy.</summary>
+        /// <summary>
+        /// Metoda obsługująca naciśnięcie przycisku uruchamiającego poziom średni. 
+        /// Akcją wynikową jest uruchomienie łatwego poziomu trudności.
+        /// </summary>
+        /// <param name="sender"> Typem danych parametru sender jest: object.</param>
+        /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
+        /// <returns>void.</returns>
         private void BtnEasy_Click(object sender, EventArgs e) {
             GC.Collect();
             LevelEasy easy = new(mainWindow);
@@ -55,6 +107,15 @@ namespace Reflex_Rehab.GameAndMenuForms {
             OpenChildForm(easy);
         }
 
+
+        /// <summary>Metoda obsługująca naciśnięcie przycisku uruchamiającego poziom średni.</summary>
+        /// <summary>
+        /// Metoda obsługująca naciśnięcie przycisku uruchamiającego poziom średni. 
+        /// Akcją wynikową jest uruchomienie średniego poziomu trudności.
+        /// </summary>
+        /// <param name="sender"> Typem danych parametru sender jest: object.</param>
+        /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
+        /// <returns>void.</returns>
         private void BtnMedium_Click(object sender, EventArgs e) {
             GC.Collect();
             if (difficultySelect >= 1) {
@@ -67,6 +128,15 @@ namespace Reflex_Rehab.GameAndMenuForms {
             }
         }
 
+
+        /// <summary>Metoda obsługująca naciśnięcie przycisku uruchamiającego poziom trudny.</summary>
+        /// <summary>
+        /// Metoda obsługująca naciśnięcie przycisku uruchamiającego poziom trudny. 
+        /// Akcją wynikową jest uruchomienie średniego poziomu trudności.
+        /// </summary>
+        /// <param name="sender"> Typem danych parametru sender jest: object.</param>
+        /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
+        /// <returns>void.</returns>
         private void BtnHard_Click(object sender, EventArgs e) {
             GC.Collect();
             if (difficultySelect >= 2) {
@@ -79,17 +149,62 @@ namespace Reflex_Rehab.GameAndMenuForms {
             }
         }
 
+
+        /// <summary>Metoda obsługująca naciśnięcie przycisku zamykającego wybór poziomu.</summary>
+        /// <summary>
+        /// Metoda obsługująca naciśnięcie przycisku zamykającego wybór poziomu. 
+        /// Akcją wynikową jest zamknięcie panelu z przyciskami poziomów trudności.
+        /// </summary>
+        /// <param name="sender"> Typem danych parametru sender jest: object.</param>
+        /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
+        /// <returns>void.</returns>
         private void BtnReturn_Click(object sender, EventArgs e) {
             panelMenuDifficultySelection.Hide();
             btnSelectDifficulty.BackColor = Color.Transparent;
         }
 
-        private void BtnHelp_Click(object sender, EventArgs e) {
 
+        /// <summary>Metoda obsługująca naciśnięcie przycisku pomocy.</summary>
+        /// <summary>
+        /// Metoda obsługująca naciśnięcie przycisku pomocy. 
+        /// Akcją wynikową jest wyświetlenie panelu z krótkim opisem i pomocą.
+        /// </summary>
+        /// <param name="sender"> Typem danych parametru sender jest: object.</param>
+        /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
+        /// <returns>void.</returns>
+        private void BtnHelp_Click(object sender, EventArgs e) {
+            panelMenu.Hide();
+            panelHelp.Show();
+            labelHelp.Show();
+            btnBackToMenu.Show();
         }
 
+
+        /// <summary>Metoda obsługująca naciśnięcie przycisku wyjścia z programu.</summary>
+        /// <summary>
+        /// Metoda obsługująca naciśnięcie przycisku wyjścia z programu. 
+        /// Akcją wynikową jest zamknięcie programu.
+        /// </summary>
+        /// <param name="sender"> Typem danych parametru sender jest: object.</param>
+        /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
+        /// <returns>void.</returns>
         private void BtnExit_Click(object sender, EventArgs e) {
             Application.Exit();
+        }
+
+        /// <summary>Metoda obsługująca naciśnięcie przycisku powrotu do menu z okna pomocy.</summary>
+        /// <summary>
+        /// Metoda obsługująca naciśnięcie przycisku powrotu do menu z okna pomocy. 
+        /// Akcją wynikową jest wyświetlenie ekranu menu.
+        /// </summary>
+        /// <param name="sender"> Typem danych parametru sender jest: object.</param>
+        /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
+        /// <returns>void.</returns>
+        private void btnBackToMenu_Click(object sender, EventArgs e) {
+            panelHelp.Hide();
+            labelHelp.Hide();
+            btnBackToMenu.Hide();
+            panelMenu.Show();
         }
     }
 }

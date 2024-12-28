@@ -1,14 +1,14 @@
-﻿namespace Reflex_Rehab.GameAndMenuForms {
+﻿namespace Reflex_Rehab.GamesAndMenuForms {
     partial class LevelMedium {
         /// <summary>
-        /// Required designer variable.
+        /// Wymagana zmienna designera.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Czyści używane zasoby.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true jeżeli zasoby powinny być zwolnione, jeżeli nie to false.</param>
         protected override void Dispose(bool disposing) {
             if (disposing && (components != null)) {
                 components.Dispose();
@@ -19,8 +19,7 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Metoda wymagana do opsługi designera - nie modyfikować i usuwać zawartości.
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();

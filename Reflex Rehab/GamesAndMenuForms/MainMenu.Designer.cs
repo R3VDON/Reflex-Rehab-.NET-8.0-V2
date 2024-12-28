@@ -1,14 +1,14 @@
-﻿namespace Reflex_Rehab.GameAndMenuForms {
+﻿namespace Reflex_Rehab.GamesAndMenuForms {
     partial class MainMenu {
         /// <summary>
-        /// Required designer variable.
+        /// Wymagana zmienna designera.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Czyści używane zasoby.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true jeżeli zasoby powinny być zwolnione, jeżeli nie to false.</param>
         protected override void Dispose(bool disposing) {
             if (disposing && (components != null)) {
                 components.Dispose();
@@ -19,10 +19,10 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Metoda wymagana do opsługi designera - nie modyfikować i usuwać zawartości.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             panelMain = new Panel();
             panelMenu = new Panel();
             panelMenuDifficultySelection = new Panel();
@@ -36,11 +36,15 @@
             btnSelectDifficulty = new Button();
             panelHeader = new Panel();
             labelGameName = new Label();
+            panelHelp = new Panel();
+            labelHelp = new Label();
+            btnBackToMenu = new Button();
             panelMain.SuspendLayout();
             panelMenu.SuspendLayout();
             panelMenuDifficultySelection.SuspendLayout();
             panelMenuButtons.SuspendLayout();
             panelHeader.SuspendLayout();
+            panelHelp.SuspendLayout();
             SuspendLayout();
             // 
             // panelMain
@@ -49,6 +53,7 @@
             panelMain.BackColor = Color.Transparent;
             panelMain.Controls.Add(panelMenu);
             panelMain.Controls.Add(panelHeader);
+            panelMain.Controls.Add(panelHelp);
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(0, 0);
             panelMain.Name = "panelMain";
@@ -239,6 +244,46 @@
             labelGameName.TabIndex = 0;
             labelGameName.Text = "Reflex Rehab";
             // 
+            // panelHelp
+            // 
+            panelHelp.Controls.Add(labelHelp);
+            panelHelp.Controls.Add(btnBackToMenu);
+            panelHelp.Location = new Point(0, 200);
+            panelHelp.Margin = new Padding(0);
+            panelHelp.Name = "panelHelp";
+            panelHelp.Size = new Size(1264, 785);
+            panelHelp.TabIndex = 2;
+            panelHelp.Visible = false;
+            // 
+            // labelHelp
+            // 
+            labelHelp.AutoSize = true;
+            labelHelp.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelHelp.ForeColor = SystemColors.Control;
+            labelHelp.Location = new Point(32, 0);
+            labelHelp.Name = "labelHelp";
+            labelHelp.Size = new Size(1178, 480);
+            labelHelp.TabIndex = 2;
+            labelHelp.Text = resources.GetString("labelHelp.Text");
+            labelHelp.Visible = false;
+            // 
+            // btnBackToMenu
+            // 
+            btnBackToMenu.Cursor = Cursors.Hand;
+            btnBackToMenu.FlatAppearance.BorderSize = 0;
+            btnBackToMenu.FlatAppearance.MouseOverBackColor = Color.FromArgb(180, 33, 33, 33);
+            btnBackToMenu.FlatStyle = FlatStyle.Flat;
+            btnBackToMenu.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            btnBackToMenu.ForeColor = SystemColors.Control;
+            btnBackToMenu.Location = new Point(1050, 690);
+            btnBackToMenu.Name = "btnBackToMenu";
+            btnBackToMenu.Size = new Size(200, 80);
+            btnBackToMenu.TabIndex = 3;
+            btnBackToMenu.Text = "Powrót do menu";
+            btnBackToMenu.UseVisualStyleBackColor = true;
+            btnBackToMenu.Visible = false;
+            btnBackToMenu.Click += btnBackToMenu_Click;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -254,6 +299,8 @@
             panelMenuButtons.ResumeLayout(false);
             panelHeader.ResumeLayout(false);
             panelHeader.PerformLayout();
+            panelHelp.ResumeLayout(false);
+            panelHelp.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -272,5 +319,8 @@
         private Button btnMedium;
         private Button btnEasy;
         private Label labelGameName;
+        private Panel panelHelp;
+        private Button btnBackToMenu;
+        private Label labelHelp;
     }
 }

@@ -117,4 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="labelHelp.Text" xml:space="preserve">
+    <value>Sterowanie:
+Lewy przycisk myszy (LPM) - interakcja z przyciskami
+W - ruch w górę
+A - ruch w lewo
+S - ruch w dół
+D - ruch w prawo
+
+Krótki opis:
+W pierwszym etapie musisz wybierać poprawne odpowiedzi na wyświetlane pytania.
+Po zebraniu odpowiedniej liczby punktów przechodzisz do labiryntu.
+Rozwiązuj pytania matematyczne, aby zdobyć fragmenty klucza.
+Naciśnij 'Powrót do menu', aby zakończyć poziom.</value>
+  </data>
 </root>
