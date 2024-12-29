@@ -13,67 +13,67 @@ using System.Windows.Forms;
 ///       Namespace Name - Reflex_Rehab.GamesAndMenuForms.
 /// </summary>
 namespace Reflex_Rehab.GamesAndMenuForms {
-    /// <summary>Łatwy poziom gry.</summary>
-    /// <summary>Formularz Windows Forms stanowiący poziom łatwy gry Reflex Rehab. Formularz ten dziedziczy po klasie <see cref="AbstractMainLevel"/></summary>
+    /// <summary>latwy poziom gry.</summary>
+    /// <summary>Formularz Windows Forms stanowiacy poziom latwy gry Reflex Rehab. Formularz ten dziedziczy po klasie <see cref="AbstractMainLevel"/></summary>
     /// \author Konrad Fornal 193083, EiT, Telekomunikacja 1A
     internal partial class LevelEasy : AbstractMainLevel {
-        /// <summary>Zdarzenie obsługujące zmianę parametru winCondition w celu odblokowania kolejnego poziomu trudności. </summary>
+        /// <summary>Zdarzenie obslugujace zmiane parametru winCondition w celu odblokowania kolejnego poziomu trudnosci. </summary>
         internal event Action<int>? WinConditionChanged;
-        /// <summary>Obiekt klasy Timer służący jako zegar dla pierwszego etapu gry.</summary>
+        /// <summary>Obiekt klasy Timer sluzacy jako zegar dla pierwszego etapu gry.</summary>
         private readonly System.Windows.Forms.Timer gameTimer = new();
-        /// <summary>Obiekt klasy Timer służący jako zegar dla drugiego etapu gry.</summary>
+        /// <summary>Obiekt klasy Timer sluzacy jako zegar dla drugiego etapu gry.</summary>
         private readonly System.Windows.Forms.Timer labyrinthTimer = new();
-        /// <summary>Obiekt klasy Random stosowany do tworzenia pseudolosowych pytań matematycznych oraz błędnych odpowiedzi do tych pytań.</summary>
+        /// <summary>Obiekt klasy Random stosowany do tworzenia pseudolosowych pytan matematycznych oraz blednych odpowiedzi do tych pytan.</summary>
         private readonly Random random = new();
-        /// <summary>Lista pozycji fragmentów klucza w labiryncie</summary>
+        /// <summary>Lista pozycji fragmentow klucza w labiryncie</summary>
         private readonly List<Point> keyFragments = [];
-        /// <summary>Tablica służąca do przechowywania układu labiryntu dla danego poziomu gry.</summary>
+        /// <summary>Tablica sluzaca do przechowywania ukladu labiryntu dla danego poziomu gry.</summary>
         private int[,] labyrinthMap = null!;
-        /// <summary>Zmienna przechowująca liczbę będącą poprawną odpowiedzią na pytanie.</summary>
+        /// <summary>Zmienna przechowujaca liczbe bedaca poprawna odpowiedzia na pytanie.</summary>
         private int correctAnswer;
-        /// <summary>Zmienna przechowująca odpowiedź gracza na pytanie. Wykorzystywana przy pytaniach w labiryncie.</summary>
+        /// <summary>Zmienna przechowujaca odpowiedz gracza na pytanie. Wykorzystywana przy pytaniach w labiryncie.</summary>
         private int userAnswer;
-        /// <summary>Zmienna przechowująca wynik uzyskany w pierwszym etapie gry.</summary>
+        /// <summary>Zmienna przechowujaca wynik uzyskany w pierwszym etapie gry.</summary>
         private int score = 0;
-        /// <summary>Zmienna przechowująca pozostały czas gry.</summary>
+        /// <summary>Zmienna przechowujaca pozostaly czas gry.</summary>
         private int timeLeft;
-        /// <summary>Obiekt przechowujący pozycję gracza w labiryncie.</summary>
+        /// <summary>Obiekt przechowujacy pozycje gracza w labiryncie.</summary>
         private Point playerPosition;
-        /// <summary>Zmienna przechowująca ilość zebranych przez gracza fragmentów klucza.</summary>
+        /// <summary>Zmienna przechowujaca ilosc zebranych przez gracza fragmentow klucza.</summary>
         private int collectedFragments;
-        /// <summary>Zmienna przechowująca liczbę fragmentów klucza występujących w labiryncie.</summary>
+        /// <summary>Zmienna przechowujaca liczbe fragmentow klucza wystepujacych w labiryncie.</summary>
         private int totalKeys;
-        /// <summary>Zmienna przechowująca informację o tym który poziom gry został wygrany.</summary>
+        /// <summary>Zmienna przechowujaca informacje o tym ktory poziom gry zostal wygrany.</summary>
         private int winCondition = 0;
-        /// <summary>Zmienna przechowująca informacje czy gracz przeszedł pierwszy etap poziomu.</summary>
+        /// <summary>Zmienna przechowujaca informacje czy gracz przeszedl pierwszy etap poziomu.</summary>
         private bool stageComplete = false;
-        /// <summary>Obiekt wyświetlający wynik uzyskany przez gracza w trakcie rozgrywki.</summary>
+        /// <summary>Obiekt wyswietlajacy wynik uzyskany przez gracza w trakcie rozgrywki.</summary>
         private Label scoreLabel = null!;
-        /// <summary>Obiekt wyświetlający pytanie, na które ma odpowiedzieć gracz.</summary>
+        /// <summary>Obiekt wyswietlajacy pytanie, na ktore ma odpowiedziec gracz.</summary>
         private Label questionLabel = null!;
-        /// <summary>Obiekt wyświetlający postępy w zbieraniu fragmentów klucza w trakcie etapu drugiego danego poziomu.</summary>
+        /// <summary>Obiekt wyswietlajacy postepy w zbieraniu fragmentow klucza w trakcie etapu drugiego danego poziomu.</summary>
         private Label labScoreLabel = null!;
-        /// <summary>Kontenerem na wszystkie pozostałe obiekty w formularzu.</summary>
+        /// <summary>Kontenerem na wszystkie pozostale obiekty w formularzu.</summary>
         private readonly DoubleBufferedPanel mainPanel = new() {
             Location = new Point(0, 0),
             Size = new Size(1264, 985),
             BackgroundImage = Properties.Resources.rsz_hex_backgrounds_networking
         };
-        /// <summary>Kontener, w którym zawarte są elementy stanowiące ekran podsumowania postępów w grze. Zawarty jest w nim także przycisk wyjścia z poziomu do menu głównego.</summary>
+        /// <summary>Kontener, w ktorym zawarte sa elementy stanowiace ekran podsumowania postepow w grze. Zawarty jest w nim takze przycisk wyjscia z poziomu do menu glownego.</summary>
         private readonly DoubleBufferedPanel scoreTimePanel = new() {
             Location = new Point(0, 0),
             Size = new Size(1264, 160),
             BackColor = Color.Transparent
         };
-        /// <summary>Kontener, w którym znajdują się wsłaściwe elementy gry, to jest odpowiedzi do pytań oraz labirynt.</summary>
+        /// <summary>Kontener, w ktorym znajduja sie wslasciwe elementy gry, to jest odpowiedzi do pytan oraz labirynt.</summary>
         private readonly DoubleBufferedPanel gamePanel = new() {
             Location = new Point(0, 160),
             Size = new Size(1264, 825),
             BackColor = Color.Transparent
         };
 
-        /// <summary>Metoda tworząca przycisk zamykający ekran gry.</summary> 
-        /// <summary>Metoda tworząca przycisk zamykający obecnie wyświetlany ekran gry. W tej klasie zawarta jest implementacja metody.</summary>
+        /// <summary>Metoda tworzaca przycisk zamykajacy ekran gry.</summary> 
+        /// <summary>Metoda tworzaca przycisk zamykajacy obecnie wyswietlany ekran gry. W tej klasie zawarta jest implementacja metody.</summary>
         /// <returns>System.Windows.Forms.Button.</returns>
         /// \see Deklaracja w klasie abstracyjnej - <see cref="AbstractMainLevel.CreateCloseButton"/>
         protected override Button CreateCloseButton() {
@@ -94,8 +94,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             };
         }
 
-        /// <summary>Metoda tworząca obiekt wyświetlający pozostały czas gry.</summary>
-        /// <summary>Metoda tworząca obiekt typu label służący do wyświetlania pozostałego czasu gry. W tej klasie zawarta jest implementacja metody.</summary>
+        /// <summary>Metoda tworzaca obiekt wyswietlajacy pozostaly czas gry.</summary>
+        /// <summary>Metoda tworzaca obiekt typu label sluzacy do wyswietlania pozostalego czasu gry. W tej klasie zawarta jest implementacja metody.</summary>
         /// <returns>System.Windows.Forms.Label.</returns>
         /// \see Deklaracja w klasie abstracyjnej - <see cref="AbstractMainLevel.CreateTimerLabel"/>
         protected override Label CreateTimerLabel() {
@@ -110,8 +110,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             };
         }
 
-        /// <summary>Metoda tworząca obiekt wyświetlający wynik pierwszego etapu danego poziomu gry.</summary> 
-        /// <summary>Metoda tworząca obiekt typu label służący do wyświetlania wyniku podczas pierwszego etapu gry na danym poziomie trudności. W tej klasie zawarta jest implementacja metody.</summary>
+        /// <summary>Metoda tworzaca obiekt wyswietlajacy wynik pierwszego etapu danego poziomu gry.</summary> 
+        /// <summary>Metoda tworzaca obiekt typu label sluzacy do wyswietlania wyniku podczas pierwszego etapu gry na danym poziomie trudnosci. W tej klasie zawarta jest implementacja metody.</summary>
         /// <returns>System.Windows.Forms.Label.</returns>
         /// \see Deklaracja w klasie abstracyjnej - <see cref="AbstractMainLevel.CreateScoreLabel"/>
         protected override Label CreateScoreLabel() {
@@ -126,8 +126,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             };
         }
 
-        /// <summary>Metoda tworząca obiekt wyświetlający postępy w drugim etapie danego poziomu gry.</summary>  
-        /// <summary>Metoda tworząca obiekt typu Label służący do wyświetlania podsumowania postępów gracza podczas drugiego etapu gry na danym poziomie trudności. W tej klasie zawarta jest implementacja metody.</summary>
+        /// <summary>Metoda tworzaca obiekt wyswietlajacy postepy w drugim etapie danego poziomu gry.</summary>  
+        /// <summary>Metoda tworzaca obiekt typu Label sluzacy do wyswietlania podsumowania postepow gracza podczas drugiego etapu gry na danym poziomie trudnosci. W tej klasie zawarta jest implementacja metody.</summary>
         /// <returns>System.Windows.Forms.Label.</returns> 
         /// \see Deklaracja w klasie abstracyjnej - <see cref="AbstractMainLevel.CreateLabyrinthScoreLabel"/>
         protected override Label CreateLabyrinthScoreLabel() {
@@ -143,12 +143,12 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         }
 
 
-        /// <summary>Metoda tworząca obiekt wyświetlający pytanie matematyczne.</summary> 
+        /// <summary>Metoda tworzaca obiekt wyswietlajacy pytanie matematyczne.</summary> 
         /// <summary>
-        /// Metoda tworząca obiekt typu Label służący do wyświetlania pytania matematycznego, na które gracz musi znaleść odpowiedź.
-        /// Metoda ta przyjmuje parametr questionText typu string przechowujący pytanie, które jest wyświetlane na ekranie. W tej klasie zawarta jest implementacja metody.
+        /// Metoda tworzaca obiekt typu Label sluzacy do wyswietlania pytania matematycznego, na ktore gracz musi znalesc odpowiedz.
+        /// Metoda ta przyjmuje parametr questionText typu string przechowujacy pytanie, ktore jest wyswietlane na ekranie. W tej klasie zawarta jest implementacja metody.
         /// </summary>
-        /// <param name="questionText"> Przechowuje pytanie generowane przez metodę <see cref="LevelEasy.GenerateQuestion"/>. Typem danych parametru questionTest jest: string.</param>
+        /// <param name="questionText"> Przechowuje pytanie generowane przez metode <see cref="LevelEasy.GenerateQuestion"/>. Typem danych parametru questionTest jest: string.</param>
         /// <returns>System.Windows.Forms.Label.</returns>
         /// \see Deklaracja w klasie abstracyjnej - <see cref="AbstractMainLevel.CreateQuestionLabel"/>
         protected override Label CreateQuestionLabel(string questionText) {
@@ -164,7 +164,7 @@ namespace Reflex_Rehab.GamesAndMenuForms {
 
 
         /// <summary>Konstruktor klasy LevelEasy</summary>
-        /// <summary>Konstruktor klasy LevelEasy. Pryjmuje on parametr w postaci obiektu klasy głównej MainWindows do obsługi klawiatury. Wywoływane są w nim metody inicjalizujące poziom gry.</summary>
+        /// <summary>Konstruktor klasy LevelEasy. Pryjmuje on parametr w postaci obiektu klasy glownej MainWindows do obslugi klawiatury. Wywolywane sa w nim metody inicjalizujace poziom gry.</summary>
         /// <param name="mainWindow">Jest to obiekt klasy <see cref="MainWindow"/>. Typem danych parametru mainWindow jest: Reflex_Rehab.MainWindow.</param>
         /// <returns>void.</returns>
         public LevelEasy(MainWindow mainWindow) {
@@ -176,8 +176,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         }
 
 
-        /// <summary>Metoda odpowiadająca za inicjalizację ekranu gry.</summary> 
-        /// <summary>Metoda odpowiadająca za inicjalizację ekranu gry. W metodzie ustawiane są parametry zegara oraz tworzone są obiekty zawarte w panelu <see cref="scoreTimePanel"/>.</summary>
+        /// <summary>Metoda odpowiadajaca za inicjalizacje ekranu gry.</summary> 
+        /// <summary>Metoda odpowiadajaca za inicjalizacje ekranu gry. W metodzie ustawiane sa parametry zegara oraz tworzone sa obiekty zawarte w panelu <see cref="scoreTimePanel"/>.</summary>
         /// <returns>void.</returns>
         /// \see Deklaracja w klasie abstracyjnej - <see cref="AbstractMainLevel.InitializeGame"/>
         protected override void InitializeGame() {
@@ -199,8 +199,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         }
 
 
-        /// <summary>Metoda odświerzająca pozostały czas pierwszego etapu gry.</summary> 
-        /// <summary>Metoda odświerzająca pozostały czas gry wyświetlany w <see cref="scoreTimePanel"/> co sekundę. W przypadku gdy czas osiąga zero wyświetlany jest komunikat o zakończeniu gry.</summary>
+        /// <summary>Metoda odswierzajaca pozostaly czas pierwszego etapu gry.</summary> 
+        /// <summary>Metoda odswierzajaca pozostaly czas gry wyswietlany w <see cref="scoreTimePanel"/> co sekunde. W przypadku gdy czas osiaga zero wyswietlany jest komunikat o zakonczeniu gry.</summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
         /// <returns>void.</returns>
@@ -220,10 +220,10 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         }
 
 
-        /// <summary>Metoda generująca pytania matematyczne.</summary> 
+        /// <summary>Metoda generujaca pytania matematyczne.</summary> 
         /// <summary>
-        /// Metoda generująca pytania matematyczne o określonym poziomie trudności z określonego zakresu operacji arytmetycznych. 
-        /// W tej klasie zawarta jest implementacja metody z czterema podstawowymi operacjami matematycznymi: dodawaniem, odejmowaniem, mnożeniem i dzieleniem. 
+        /// Metoda generujaca pytania matematyczne o okreslonym poziomie trudnosci z okreslonego zakresu operacji arytmetycznych. 
+        /// W tej klasie zawarta jest implementacja metody z czterema podstawowymi operacjami matematycznymi: dodawaniem, odejmowaniem, mnozeniem i dzieleniem. 
         /// </summary>
         /// <returns>void.</returns>
         /// \see Deklaracja w klasie abstracyjnej - <see cref="AbstractMainLevel.GenerateQuestion"/>
@@ -277,8 +277,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         }
 
 
-        /// <summary>Metoda tworząca przyciski z odpowiedziami.</summary> 
-        /// <summary>Metoda tworząca przyciski z odpowiedziami na wyświetlne pytania. Tworzona jest jedna odpowiedź poprawna i trzy błędne. Położenie jest ustalane w sposób pseudolosowy.</summary>
+        /// <summary>Metoda tworzaca przyciski z odpowiedziami.</summary> 
+        /// <summary>Metoda tworzaca przyciski z odpowiedziami na wyswietlne pytania. Tworzona jest jedna odpowiedz poprawna i trzy bledne. Polozenie jest ustalane w sposob pseudolosowy.</summary>
         /// <returns>void.</returns>
         /// \see Deklaracja w klasie abstracyjnej - <see cref="AbstractMainLevel.GenerateAnwserButtons"/>
         protected override void GenerateAnwserButtons() {
@@ -321,10 +321,10 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             }
         }
 
-        /// <summary>Metoda obsługująca naciśnięcie prawidłowej odpowiedzi.</summary> 
+        /// <summary>Metoda obslugujaca nacisniecie prawidlowej odpowiedzi.</summary> 
         /// <summary>
-        /// Metoda obsługująca naciśnięcie prawidłowej odpowiedzi na wyświetlane pytanie oraz uzyskanie wymaganego wyniku. 
-        /// Dla klasy <see cref="LevelEasy"/> próg wygranej ustawiony jest na 10 punktów, za każdą poprawną odpowiedź przyznawany punkt, a ilość czasu doliczonego za poprawną odpowiedź wynosi 1 sekundę.
+        /// Metoda obslugujaca nacisniecie prawidlowej odpowiedzi na wyswietlane pytanie oraz uzyskanie wymaganego wyniku. 
+        /// Dla klasy <see cref="LevelEasy"/> prog wygranej ustawiony jest na 10 punktow, za kazda poprawna odpowiedz przyznawany punkt, a ilosc czasu doliczonego za poprawna odpowiedz wynosi 1 sekunde.
         /// </summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
@@ -348,8 +348,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             }
         }
 
-        /// <summary>Metoda obsługująca naciśnięcie złej odpowiedzi.</summary> 
-        /// <summary>Metoda obsługująca naciśnięcie złej odpowiedzi na wyświetlane pytanie. W klasie <see cref="LevelEasy"> za błędną odpowiedź odejmowana jest jedna sekunda.</summary>
+        /// <summary>Metoda obslugujaca nacisniecie zlej odpowiedzi.</summary> 
+        /// <summary>Metoda obslugujaca nacisniecie zlej odpowiedzi na wyswietlane pytanie. W klasie <see cref="LevelEasy"> za bledna odpowiedz odejmowana jest jedna sekunda.</summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
         /// <returns>void.</returns>
@@ -362,8 +362,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             GenerateAnwserButtons();
         }
 
-        /// <summary>Metoda obsługująca naciśnięcie przycisku zamknięcia danego ekranu gry.</summary> 
-        /// <summary>Metoda obsługująca naciśnięcie przycisku zamknięcia danego ekranu gry. W tej klasie zawarta jest implementacja metody.</summary>
+        /// <summary>Metoda obslugujaca nacisniecie przycisku zamkniecia danego ekranu gry.</summary> 
+        /// <summary>Metoda obslugujaca nacisniecie przycisku zamkniecia danego ekranu gry. W tej klasie zawarta jest implementacja metody.</summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
         /// <returns>void.</returns>
@@ -376,10 +376,10 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             this.Close();
         }
 
-        /// <summary>Metoda inicjalizująca labirynt.</summary> 
+        /// <summary>Metoda inicjalizujaca labirynt.</summary> 
         /// <summary>
-        /// Metoda inicjalizująca labirynt po uzyskaniu wymaganego wyniku w etapie pierwszym danego poziomu. 
-        /// Inicjalizacja polega na wygenerowaniu labiryntu na bazie tablicy, ustawieniu czasu gry na określoną wartość oraz wyznaczeniu liczby fragmentów klucza potrzebnych do ukończenia labiryntu.
+        /// Metoda inicjalizujaca labirynt po uzyskaniu wymaganego wyniku w etapie pierwszym danego poziomu. 
+        /// Inicjalizacja polega na wygenerowaniu labiryntu na bazie tablicy, ustawieniu czasu gry na okreslona wartosc oraz wyznaczeniu liczby fragmentow klucza potrzebnych do ukonczenia labiryntu.
         /// </summary>
         /// <returns>void.</returns>
         /// \see Deklaracja w klasie abstrakcyjne - <see cref="AbstractMainLevel.InitializeLabyrinth"/>
@@ -424,8 +424,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             labyrinthTimer.Start();
         }
 
-        /// <summary>Metoda odświerzająca pozostały czas drugiego etapu gry.</summary> 
-        /// <summary>Metoda odświerzająca pozostały czas gry drugiego etapu wyświetlany w <see cref="scoreTimePanel"/> co sekundę. W przypadku gdy czas osiąga zero wyświetlany jest komunikat o zakończeniu gry.</summary>
+        /// <summary>Metoda odswierzajaca pozostaly czas drugiego etapu gry.</summary> 
+        /// <summary>Metoda odswierzajaca pozostaly czas gry drugiego etapu wyswietlany w <see cref="scoreTimePanel"/> co sekunde. W przypadku gdy czas osiaga zero wyswietlany jest komunikat o zakonczeniu gry.</summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
         /// <returns>void.</returns>
@@ -438,16 +438,16 @@ namespace Reflex_Rehab.GamesAndMenuForms {
 
             if (timeLeft <= 0) {
                 labyrinthTimer.Stop();
-                MessageBox.Show("Nie zdążyłeś zebrać wszystkich fragmentów klucza przed upływem czasu. Koniec Gry");
+                MessageBox.Show("Nie zdążyles zebrać wszystkich fragmentów klucza przed upływem czasu. Koniec Gry");
                 this.Close();
                 GC.Collect();
             }
         }
 
-        /// <summary>Metoda wyśiwetlająca labirynt.</summary> 
+        /// <summary>Metoda wysiwetlajaca labirynt.</summary> 
         /// <summary>
-        /// Metoda wyśiwetlająca labirynt oraz odświerzająca go po każdym ruchu gracza. 
-        /// Rysowanie labiryntu polega na rysowaniu kwadratów o stałym rozmiarze z wypełni9eniem zależnym od wartości wpisanej w tablicy na bazie której generowany jest labirynt.
+        /// Metoda wysiwetlajaca labirynt oraz odswierzajaca go po kazdym ruchu gracza. 
+        /// Rysowanie labiryntu polega na rysowaniu kwadratow o stalym rozmiarze z wypelni9eniem zaleznym od wartosci wpisanej w tablicy na bazie ktorej generowany jest labirynt.
         /// </summary>
         /// <returns>void.</returns>
         /// \see Deklaracja w klasie abstrakcyjnej - <see cref="AbstractMainLevel.DrawLabyrinth"/>
@@ -484,10 +484,10 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             };
         }
 
-        /// <summary>Metoda obsługująca naciśnięcie przycisku ruchu.</summary> 
+        /// <summary>Metoda obslugujaca nacisniecie przycisku ruchu.</summary> 
         /// <summary>
-        /// Metoda obsługująca naciśnięcie przycisku ruchu. Naciśnięcie odpowiedniego klawisza powoduje ruch gracza w odpowiednią stronę po uprzednim sprawdzeniu czy ruch jest możliwy do wykonania.
-        /// W metodzie sprawdzany jest także warunek ukończenia labiryntu.
+        /// Metoda obslugujaca nacisniecie przycisku ruchu. Nacisniecie odpowiedniego klawisza powoduje ruch gracza w odpowiednia strone po uprzednim sprawdzeniu czy ruch jest mozliwy do wykonania.
+        /// W metodzie sprawdzany jest takze warunek ukonczenia labiryntu.
         /// </summary>
         /// <param name="keyCode">Typem danych parametru keyCode jest: System.Windows.Forms.Keys.</param>
         /// <returns>void.</returns>
@@ -523,12 +523,12 @@ namespace Reflex_Rehab.GamesAndMenuForms {
                         labyrinthMap[newPosition.Y, newPosition.X] = 0;
                     }
                     else {
-                        MessageBox.Show("Mimo złej odpowiedzi strażnik fragmentu pozwolił ci przejść przez jego pole!");
+                        MessageBox.Show("Mimo złej odpowiedzi strażnik fragmentu pozwolil ci przejść przez jego pole!");
                     }
                 }
                 if (labyrinthMap[newPosition.Y, newPosition.X] == 3) {
                     if (HasCollectedAllKeyFragments()) {
-                        MessageBox.Show("Udało ci się zebrać wszystkie fragmentu klucza. Możesz wyjść z labiryntu");
+                        MessageBox.Show("Udało ci sie zebrac wszystkie fragmenty klucza. Możesz wyjść z labiryntu");
                         labyrinthTimer.Stop();
                         winCondition = 1;
                         WinConditionChanged?.Invoke(winCondition);
@@ -545,8 +545,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
             }
         }
 
-        /// <summary>Metoda sprawdzająca czy gracz może wyjść z labiryntu.</summary> 
-        /// <summary>Metoda sprawdzająca czy gracz zebrał wszystkie fragmenty klucza potrzebnego do wyjścia z labiryntu. W klasie <see cref="LevelEasy"/> zaimplementowano metodę.</summary>
+        /// <summary>Metoda sprawdzajaca czy gracz moze wyjsc z labiryntu.</summary> 
+        /// <summary>Metoda sprawdzajaca czy gracz zebral wszystkie fragmenty klucza potrzebnego do wyjscia z labiryntu. W klasie <see cref="LevelEasy"/> zaimplementowano metode.</summary>
         /// <returns>bool.</returns>
         /// \see Deklaracja w klasie abstrakcyjnej - <see cref="AbstractMainLevel.HasCollectedAllKeyFragments"/>
         protected override bool HasCollectedAllKeyFragments() {
@@ -554,8 +554,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         }
 
 
-        /// <summary>Metoda sprawdzająca czy gracz może wykonać ruch.</summary> 
-        /// <summary>Metoda sprawdzająca czy gracz może wykonać ruch. W klasie <see cref="LevelEasy"/> zaimplementowano metodę.</summary>
+        /// <summary>Metoda sprawdzajaca czy gracz moze wykonac ruch.</summary> 
+        /// <summary>Metoda sprawdzajaca czy gracz moze wykonac ruch. W klasie <see cref="LevelEasy"/> zaimplementowano metode.</summary>
         /// <param name="newPosition">Typem danych parametru newPosition jest: System.Drawing.Point.</param>
         /// <returns>bool.</returns>
         /// \see Deklaracja w klasie abstrakcyjnej - <see cref="AbstractMainLevel.IsValidMove"/>

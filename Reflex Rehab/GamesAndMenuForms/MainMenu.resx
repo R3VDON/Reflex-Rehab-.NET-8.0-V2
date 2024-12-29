@@ -120,15 +120,15 @@
   <data name="labelHelp.Text" xml:space="preserve">
     <value>Sterowanie:
 Lewy przycisk myszy (LPM) - interakcja z przyciskami
-W - ruch w górę
+W - ruch w gore
 A - ruch w lewo
-S - ruch w dół
+S - ruch w dol
 D - ruch w prawo
 
-Krótki opis:
-W pierwszym etapie musisz wybierać poprawne odpowiedzi na wyświetlane pytania.
-Po zebraniu odpowiedniej liczby punktów przechodzisz do labiryntu.
-Rozwiązuj pytania matematyczne, aby zdobyć fragmenty klucza.
-Naciśnij 'Powrót do menu', aby zakończyć poziom.</value>
+Krotki opis:
+W pierwszym etapie musisz wybierac poprawne odpowiedzi na wyswietlane pytania.
+Po zebraniu odpowiedniej liczby punktow przechodzisz do labiryntu.
+Rozwiazuj pytania matematyczne, aby zdobyc fragmenty klucza.
+Nacisnij 'Powrot do menu', aby zakonczyc poziom.</value>
   </data>
 </root>

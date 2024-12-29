@@ -6,9 +6,9 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Czyści używane zasoby.
+        /// Czysci uzywane zasoby.
         /// </summary>
-        /// <param name="disposing">true jeżeli zasoby powinny być zwolnione, jeżeli nie to false.</param>
+        /// <param name="disposing">true jezeli zasoby powinny byc zwolnione, jezeli nie to false.</param>
         protected override void Dispose(bool disposing) {
             if (disposing && (components != null)) {
                 components.Dispose();
@@ -19,7 +19,7 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Metoda wymagana do opsługi designera - nie modyfikować i usuwać zawartości.
+        /// Metoda wymagana do opslugi designera - nie modyfikowac i usuwac zawartosci.
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();

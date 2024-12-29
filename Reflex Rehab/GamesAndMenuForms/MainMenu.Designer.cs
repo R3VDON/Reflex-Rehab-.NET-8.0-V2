@@ -6,9 +6,9 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Czyści używane zasoby.
+        /// Czysci uzywane zasoby.
         /// </summary>
-        /// <param name="disposing">true jeżeli zasoby powinny być zwolnione, jeżeli nie to false.</param>
+        /// <param name="disposing">true jezeli zasoby powinny byc zwolnione, jezeli nie to false.</param>
         protected override void Dispose(bool disposing) {
             if (disposing && (components != null)) {
                 components.Dispose();
@@ -19,7 +19,7 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Metoda wymagana do opsługi designera - nie modyfikować i usuwać zawartości.
+        /// Metoda wymagana do opslugi designera - nie modyfikowac i usuwac zawartosci.
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
@@ -97,7 +97,7 @@
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(250, 125);
             btnReturn.TabIndex = 4;
-            btnReturn.Text = "Powrót";
+            btnReturn.Text = "Powrot";
             btnReturn.TextAlign = ContentAlignment.MiddleLeft;
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += BtnReturn_Click;
@@ -133,7 +133,7 @@
             btnMedium.Name = "btnMedium";
             btnMedium.Size = new Size(250, 125);
             btnMedium.TabIndex = 2;
-            btnMedium.Text = "Średni";
+            btnMedium.Text = "sredni";
             btnMedium.TextAlign = ContentAlignment.MiddleLeft;
             btnMedium.UseVisualStyleBackColor = true;
             btnMedium.Click += BtnMedium_Click;
@@ -151,7 +151,7 @@
             btnEasy.Name = "btnEasy";
             btnEasy.Size = new Size(250, 125);
             btnEasy.TabIndex = 1;
-            btnEasy.Text = "Łatwy";
+            btnEasy.Text = "latwy";
             btnEasy.TextAlign = ContentAlignment.MiddleLeft;
             btnEasy.UseVisualStyleBackColor = true;
             btnEasy.Click += BtnEasy_Click;
@@ -181,7 +181,7 @@
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(250, 100);
             btnExit.TabIndex = 3;
-            btnExit.Text = "Wyjdź";
+            btnExit.Text = "Wyjdz";
             btnExit.TextAlign = ContentAlignment.MiddleLeft;
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += BtnExit_Click;
@@ -218,7 +218,7 @@
             btnSelectDifficulty.Name = "btnSelectDifficulty";
             btnSelectDifficulty.Size = new Size(250, 125);
             btnSelectDifficulty.TabIndex = 0;
-            btnSelectDifficulty.Text = "Rozpocznij Grę";
+            btnSelectDifficulty.Text = "Rozpocznij Gre";
             btnSelectDifficulty.TextAlign = ContentAlignment.MiddleLeft;
             btnSelectDifficulty.UseVisualStyleBackColor = false;
             btnSelectDifficulty.Click += BtnSelectDifficulty_Click;
@@ -279,7 +279,7 @@
             btnBackToMenu.Name = "btnBackToMenu";
             btnBackToMenu.Size = new Size(200, 80);
             btnBackToMenu.TabIndex = 3;
-            btnBackToMenu.Text = "Powrót do menu";
+            btnBackToMenu.Text = "Powrot do menu";
             btnBackToMenu.UseVisualStyleBackColor = true;
             btnBackToMenu.Visible = false;
             btnBackToMenu.Click += btnBackToMenu_Click;

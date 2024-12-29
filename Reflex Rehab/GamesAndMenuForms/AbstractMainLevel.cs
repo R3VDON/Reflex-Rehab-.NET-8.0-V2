@@ -11,14 +11,14 @@ using System.Windows.Forms;
 ///       Namespace Name - Reflex_Rehab.GamesAndMenuForms.
 /// </summary>
 namespace Reflex_Rehab.GamesAndMenuForms {
-    /// <summary>Klasa abstrakcyjna stanowiąca wzorzec dla formularzy poszczególnych poziomów.</summary>
-    /// <summary>Klasa abstrakcyjna stanowiąca wzorzec dla formularzy poszczególnych poziomów. W klasie zawarte są deklaracje wszystkich metod, które są wspólne dla klas poziomów.</summary>
+    /// <summary>Klasa abstrakcyjna stanowiaca wzorzec dla formularzy poszczegolnych poziomow.</summary>
+    /// <summary>Klasa abstrakcyjna stanowiaca wzorzec dla formularzy poszczegolnych poziomow. W klasie zawarte sa deklaracje wszystkich metod, ktore sa wspolne dla klas poziomow.</summary>
     /// \author Konrad Fornal 193083, EiT, Telekomunikacja 1A
     internal abstract partial class AbstractMainLevel : Form {
 
 
-        /// <summary>Metoda tworząca przycisk zamykający ekran gry.</summary> 
-        /// <summary>Metoda tworząca przycisk zamykający obecnie wyświetlany ekran gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda tworzaca przycisk zamykajacy ekran gry.</summary> 
+        /// <summary>Metoda tworzaca przycisk zamykajacy obecnie wyswietlany ekran gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>System.Windows.Forms.Button.</returns>
         /// \see
         /// <ul>
@@ -29,8 +29,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         protected abstract Button CreateCloseButton();
 
 
-        /// <summary>Metoda tworząca obiekt wyświetlający pozostały czas gry.</summary>
-        /// <summary>Metoda tworząca obiekt typu label służący do wyświetlania pozostałego czasu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda tworzaca obiekt wyswietlajacy pozostaly czas gry.</summary>
+        /// <summary>Metoda tworzaca obiekt typu label sluzacy do wyswietlania pozostalego czasu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>System.Windows.Forms.Label.</returns>
         /// \see
         /// <ul>
@@ -41,8 +41,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         protected abstract Label CreateTimerLabel();
 
 
-        /// <summary>Metoda tworząca obiekt wyświetlający wynik pierwszego etapu danego poziomu gry.</summary> 
-        /// <summary>Metoda tworząca obiekt typu label służący do wyświetlania wyniku podczas pierwszego etapu gry na danym poziomie trudności. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda tworzaca obiekt wyswietlajacy wynik pierwszego etapu danego poziomu gry.</summary> 
+        /// <summary>Metoda tworzaca obiekt typu label sluzacy do wyswietlania wyniku podczas pierwszego etapu gry na danym poziomie trudnosci. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>System.Windows.Forms.Label.</returns>
         /// \see
         /// <ul>
@@ -52,8 +52,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract Label CreateScoreLabel();
 
-        /// <summary>Metoda tworząca obiekt wyświetlający postępy w drugim etapie danego poziomu gry.</summary>  
-        /// <summary>Metoda tworząca obiekt typu Label służący do wyświetlania podsumowania postępów gracza podczas drugiego etapu gry na danym poziomie trudności. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda tworzaca obiekt wyswietlajacy postepy w drugim etapie danego poziomu gry.</summary>  
+        /// <summary>Metoda tworzaca obiekt typu Label sluzacy do wyswietlania podsumowania postepow gracza podczas drugiego etapu gry na danym poziomie trudnosci. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>System.Windows.Forms.Label.</returns> 
         /// \see
         /// <ul>
@@ -63,10 +63,10 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract Label CreateLabyrinthScoreLabel();
 
-        /// <summary>Metoda tworząca obiekt wyświetlający pytanie matematyczne.</summary> 
+        /// <summary>Metoda tworzaca obiekt wyswietlajacy pytanie matematyczne.</summary> 
         /// <summary>
-        /// Metoda tworząca obiekt typu Label służący do wyświetlania pytania matematycznego, na które gracz musi znaleść odpowiedź.
-        /// Metoda ta przyjmuje parametr questionText typu string przechowujący pytanie, które jest wyświetlane na ekranie. W tej klasie jest zawarty tylko wzorzec metody.
+        /// Metoda tworzaca obiekt typu Label sluzacy do wyswietlania pytania matematycznego, na ktore gracz musi znalesc odpowiedz.
+        /// Metoda ta przyjmuje parametr questionText typu string przechowujacy pytanie, ktore jest wyswietlane na ekranie. W tej klasie jest zawarty tylko wzorzec metody.
         /// </summary>
         /// <param name="questionText"> Typem danych parametru questionTest jest: string.</param>
         /// <returns>System.Windows.Forms.Label.</returns>
@@ -78,8 +78,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract Label CreateQuestionLabel(string questionText);
 
-        /// <summary>Metoda odpowiadająca za inicjalizację ekranu gry.</summary> 
-        /// <summary>Metoda odpowiadająca za inicjalizację ekranu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda odpowiadajaca za inicjalizacje ekranu gry.</summary> 
+        /// <summary>Metoda odpowiadajaca za inicjalizacje ekranu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>void.</returns>
         /// \see
         /// <ul>
@@ -89,8 +89,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void InitializeGame();
 
-        /// <summary>Metoda odświerzająca pozostały czas pierwszego etapu gry.</summary> 
-        /// <summary>Metoda odświerzająca pozostały czas pierwszego etapu gry. W przypadku gdy czas osiąga zero wyświetlany jest komunikat o zakończeniu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda odswierzajaca pozostaly czas pierwszego etapu gry.</summary> 
+        /// <summary>Metoda odswierzajaca pozostaly czas pierwszego etapu gry. W przypadku gdy czas osiaga zero wyswietlany jest komunikat o zakonczeniu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
         /// <returns>void.</returns>
@@ -102,8 +102,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void GameTimer_Tick(object sender, EventArgs e);
 
-        /// <summary>Metoda generująca pytania matematyczne.</summary> 
-        /// <summary>Metoda generująca pytania matematyczne o określonym poziomie trudności z określonego zakresu operacji arytmetycznych. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda generujaca pytania matematyczne.</summary> 
+        /// <summary>Metoda generujaca pytania matematyczne o okreslonym poziomie trudnosci z okreslonego zakresu operacji arytmetycznych. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>void.</returns>
         /// \see
         /// <ul>
@@ -113,8 +113,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void GenerateQuestion();
 
-        /// <summary>Metoda tworząca przyciski z odpowiedziami.</summary> 
-        /// <summary>Metoda tworząca przyciski z odpowiedziami na wyśiwetlne pytania. Tworzona jest jedna odpowiedź poprawna i kilka błędnych. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda tworzaca przyciski z odpowiedziami.</summary> 
+        /// <summary>Metoda tworzaca przyciski z odpowiedziami na wysiwetlne pytania. Tworzona jest jedna odpowiedz poprawna i kilka blednych. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>void.</returns>
         /// \see
         /// <ul>
@@ -124,8 +124,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void GenerateAnwserButtons();
 
-        /// <summary>Metoda obsługująca naciśnięcie prawidłowej odpowiedzi.</summary> 
-        /// <summary>Metoda obsługująca naciśnięcie prawidłowej odpowiedzi na wyświetlane pytanie. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda obslugujaca nacisniecie prawidlowej odpowiedzi.</summary> 
+        /// <summary>Metoda obslugujaca nacisniecie prawidlowej odpowiedzi na wyswietlane pytanie. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
         /// <returns>void.</returns>
@@ -137,8 +137,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void CorrectAnswer_Click(object sender, EventArgs e);
 
-        /// <summary>Metoda obsługująca naciśnięcie złej odpowiedzi.</summary> 
-        /// <summary>Metoda obsługująca naciśnięcie złej odpowiedzi na wyświetlane pytanie. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda obslugujaca nacisniecie zlej odpowiedzi.</summary> 
+        /// <summary>Metoda obslugujaca nacisniecie zlej odpowiedzi na wyswietlane pytanie. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
         /// <returns>void.</returns>
@@ -150,8 +150,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void WrongAnswer_Click(object sender, EventArgs e);
 
-        /// <summary>Metoda obsługująca naciśnięcie przycisku zamknięcia danego ekranu gry.</summary> 
-        /// <summary>Metoda obsługująca naciśnięcie przycisku zamknięcia danego ekranu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda obslugujaca nacisniecie przycisku zamkniecia danego ekranu gry.</summary> 
+        /// <summary>Metoda obslugujaca nacisniecie przycisku zamkniecia danego ekranu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
         /// <returns>void.</returns>
@@ -163,8 +163,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void CloseButton_Click(object? sender, EventArgs e);
 
-        /// <summary>Metoda inicjalizująca labirynt.</summary> 
-        /// <summary>Metoda inicjalizująca labirynt po uzyskaniu wymaganego wyniku w etapie pierwszym danego poziomu. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda inicjalizujaca labirynt.</summary> 
+        /// <summary>Metoda inicjalizujaca labirynt po uzyskaniu wymaganego wyniku w etapie pierwszym danego poziomu. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>void.</returns>
         /// \see
         /// <ul>
@@ -174,8 +174,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void InitializeLabyrinth();
 
-        /// <summary>Metoda odświerzająca zegar drugiego etapu gry.</summary> 
-        /// <summary>Metoda odświerzająca zegar drugiego etapu gry. W przypadku gdy czas osiąga zero wyświetlany jest komunikat o zakończeniu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda odswierzajaca zegar drugiego etapu gry.</summary> 
+        /// <summary>Metoda odswierzajaca zegar drugiego etapu gry. W przypadku gdy czas osiaga zero wyswietlany jest komunikat o zakonczeniu gry. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <param name="sender"> Typem danych parametru sender jest: object.</param>
         /// <param name="e"> Typem danych parametru e jest: System.EventArgs.</param>
         /// <returns>void.</returns>
@@ -187,8 +187,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void LabyrinthTimer_Tick(object? sender, EventArgs e);
 
-        /// <summary>Metoda wyśiwetlająca labirynt.</summary> 
-        /// <summary>Metoda wyśiwetlająca labirynt oraz odświerzająca go po każdym ruchu gracza. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda wysiwetlajaca labirynt.</summary> 
+        /// <summary>Metoda wysiwetlajaca labirynt oraz odswierzajaca go po kazdym ruchu gracza. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>void.</returns>
         /// \see
         /// <ul>
@@ -198,8 +198,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void DrawLabyrinth();
 
-        /// <summary>Metoda obsługująca naciśnięcie przycisku ruchu.</summary> 
-        /// <summary>Metoda obsługująca naciśnięcie przycisku ruchu. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda obslugujaca nacisniecie przycisku ruchu.</summary> 
+        /// <summary>Metoda obslugujaca nacisniecie przycisku ruchu. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <param name="keyCode">Typem danych parametru keyCode jest: System.Windows.Forms.Keys.</param>
         /// <returns>void.</returns>
         /// \see
@@ -210,8 +210,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract void MainWindow_KeyPressed(Keys keyCode);
 
-        /// <summary>Metoda sprawdzająca czy gracz może wyjść z labiryntu.</summary> 
-        /// <summary>Metoda sprawdzająca czy gracz zebrał wszystkie fragmenty klucza potrzebnego do wyjścia z labiryntu. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda sprawdzajaca czy gracz moze wyjsc z labiryntu.</summary> 
+        /// <summary>Metoda sprawdzajaca czy gracz zebral wszystkie fragmenty klucza potrzebnego do wyjscia z labiryntu. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <returns>bool.</returns>
         /// \see
         /// <ul>
@@ -221,8 +221,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// </ul>
         protected abstract bool HasCollectedAllKeyFragments();
 
-        /// <summary>Metoda sprawdzająca czy gracz może wykonać ruch.</summary> 
-        /// <summary>Metoda sprawdzająca czy gracz może wykonać ruch. W tej klasie jest zawarty tylko wzorzec metody.</summary>
+        /// <summary>Metoda sprawdzajaca czy gracz moze wykonac ruch.</summary> 
+        /// <summary>Metoda sprawdzajaca czy gracz moze wykonac ruch. W tej klasie jest zawarty tylko wzorzec metody.</summary>
         /// <param name="newPosition">Typem danych parametru newPosition jest: System.Drawing.Point.</param>
         /// <returns>bool.</returns>
         /// \see
