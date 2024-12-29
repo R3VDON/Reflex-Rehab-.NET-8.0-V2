@@ -497,36 +497,41 @@ namespace Reflex_Rehab.GamesAndMenuForms {
                 return;
             }
 
-            Point newPosition = playerPosition;
+            Point newPositionMed = playerPosition;
 
             switch (keyCode) {
                 case Keys.W:
-                    newPosition.Y -= 1;
+                    newPositionMed.Y -= 1;
                     break;
                 case Keys.A:
-                    newPosition.X -= 1;
+                    newPositionMed.X -= 1;
                     break;
                 case Keys.S:
-                    newPosition.Y += 1;
+                    newPositionMed.Y += 1;
                     break;
                 case Keys.D:
-                    newPosition.X += 1;
+                    newPositionMed.X += 1;
                     break;
             }
 
-            if (IsValidMove(newPosition)) {
-                if (labyrinthMap[newPosition.Y, newPosition.X] == 2) {
+            if (winCondition == 2) {
+                playerPosition = new Point(1, 1);
+                newPositionMed = playerPosition;
+            }
+
+            if (IsValidMove(newPositionMed)) {
+                if (labyrinthMap[newPositionMed.Y, newPositionMed.X] == 2) {
                     GenerateQuestion();
                     if (userAnswer == correctAnswer) {
-                        keyFragments.Remove(newPosition);
+                        keyFragments.Remove(newPositionMed);
                         collectedFragments++;
-                        labyrinthMap[newPosition.Y, newPosition.X] = 0;
+                        labyrinthMap[newPositionMed.Y, newPositionMed.X] = 0;
                     }
                     else {
                         MessageBox.Show("Mimo złej odpowiedzi strażnik fragmentu pozwolil ci przejść przez jego pole!");
                     }
                 }
-                if (labyrinthMap[newPosition.Y, newPosition.X] == 3) {
+                if (labyrinthMap[newPositionMed.Y, newPositionMed.X] == 3) {
                     if (HasCollectedAllKeyFragments()) {
                         MessageBox.Show("Udało ci sie zebrac wszystkie fragmenty klucza. Możesz wyjść z labiryntu");
                         labyrinthTimer.Stop();
@@ -540,7 +545,7 @@ namespace Reflex_Rehab.GamesAndMenuForms {
                         return;
                     }
                 }
-                playerPosition = newPosition;
+                playerPosition = newPositionMed;
                 DrawLabyrinth();
             }
         }
@@ -555,11 +560,11 @@ namespace Reflex_Rehab.GamesAndMenuForms {
 
         /// <summary>Metoda sprawdzajaca czy gracz moze wykonac ruch.</summary> 
         /// <summary>Metoda sprawdzajaca czy gracz moze wykonac ruch. W klasie <see cref="LevelMedium"/> zaimplementowano metode.</summary>
-        /// <param name="newPosition">Typem danych parametru newPosition jest: System.Drawing.Point.</param>
+        /// <param name="newPositionMed">Typem danych parametru newPositionMed jest: System.Drawing.Point.</param>
         /// <returns>bool.</returns>
         /// \see Deklaracja w klasie abstrakcyjnej - <see cref="AbstractMainLevel.IsValidMove"/>
-        protected override bool IsValidMove(Point newPosition) {
-            return labyrinthMap[newPosition.Y, newPosition.X] != 1;
+        protected override bool IsValidMove(Point newPositionMed) {
+            return labyrinthMap[newPositionMed.Y, newPositionMed.X] != 1;
         }
     }
 }

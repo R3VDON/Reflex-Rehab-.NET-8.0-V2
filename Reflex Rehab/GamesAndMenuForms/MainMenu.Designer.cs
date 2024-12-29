@@ -133,7 +133,7 @@
             btnMedium.Name = "btnMedium";
             btnMedium.Size = new Size(250, 125);
             btnMedium.TabIndex = 2;
-            btnMedium.Text = "sredni";
+            btnMedium.Text = "Średni";
             btnMedium.TextAlign = ContentAlignment.MiddleLeft;
             btnMedium.UseVisualStyleBackColor = true;
             btnMedium.Click += BtnMedium_Click;
@@ -151,7 +151,7 @@
             btnEasy.Name = "btnEasy";
             btnEasy.Size = new Size(250, 125);
             btnEasy.TabIndex = 1;
-            btnEasy.Text = "latwy";
+            btnEasy.Text = "Łatwy";
             btnEasy.TextAlign = ContentAlignment.MiddleLeft;
             btnEasy.UseVisualStyleBackColor = true;
             btnEasy.Click += BtnEasy_Click;

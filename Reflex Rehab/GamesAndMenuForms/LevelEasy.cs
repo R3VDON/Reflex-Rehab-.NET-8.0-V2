@@ -514,6 +514,11 @@ namespace Reflex_Rehab.GamesAndMenuForms {
                     break;
             }
 
+            if (winCondition == 1) {
+                playerPosition = new Point(1, 1);
+                newPosition = playerPosition;
+            }
+
             if (IsValidMove(newPosition)) {
                 if (labyrinthMap[newPosition.Y, newPosition.X] == 2) {
                     GenerateQuestion();
@@ -532,7 +537,8 @@ namespace Reflex_Rehab.GamesAndMenuForms {
                         labyrinthTimer.Stop();
                         winCondition = 1;
                         WinConditionChanged?.Invoke(winCondition);
-                        GC.Collect();
+                        //newPosition.Y = 0;
+                        //newPosition.X = 0;
                         this.Close();
                     }
                     else {
@@ -560,6 +566,9 @@ namespace Reflex_Rehab.GamesAndMenuForms {
         /// <returns>bool.</returns>
         /// \see Deklaracja w klasie abstrakcyjnej - <see cref="AbstractMainLevel.IsValidMove"/>
         protected override bool IsValidMove(Point newPosition) {
+            if (winCondition == 1) {
+                newPosition = new Point(1, 1);
+            }
             return labyrinthMap[newPosition.Y, newPosition.X] != 1;
         }
     }
